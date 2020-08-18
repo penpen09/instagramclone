@@ -1,0 +1,13 @@
+<h1>お気に入り</h1>
+
+<table>
+  <tbody>
+    <% @favorites.each do |picture| %>
+      <tr>
+        <td><%= image_tag picture.user.image.url %></td>
+        <td><%= picture.content %></td>
+        <td><%= picture.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

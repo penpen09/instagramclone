@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources :pictures do
     post :confirm, on: :collection
+    patch :confirm, on: :member
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :favorites, only: [:create, :destroy]
-  resources :users, only: [:new, :create, :show]
+  resources :favorites, only: [:create, :destroy, :index]
+  resources :users do
+    post :confirm, on: :collection
+    patch :confirm, on: :member
+  end
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
 end

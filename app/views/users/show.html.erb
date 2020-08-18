@@ -1,4 +1,6 @@
 <div>
   <h1 class="text-center"><%= @user.name %>のページ</h1>
   <p class="text-center">メールアドレス: <%= @user.email %></p>
+
+  <p><%= link_to 'お気に入り一覧', favorites_path %></p>
 </div>
