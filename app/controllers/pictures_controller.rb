@@ -21,8 +21,10 @@ class PicturesController < ApplicationController
   def edit
   end
 
-  # POST /pictures
-  # POST /pictures.json
+  def confirm
+    @picture = Picture.new(picture_params)
+  end
+
   def create
     @picture = Picture.new(picture_params)
 
@@ -66,6 +68,6 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
   end
   def picture_params
-    params.require(:picture).permit(:image, :content)
+    params.require(:picture).permit(:image, :image_cache, :content)
   end
 end
