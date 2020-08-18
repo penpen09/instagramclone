@@ -2,11 +2,11 @@
 
 <table>
   <tbody>
-    <% @favorites.each do |picture| %>
+    <% @favorites.each do |favorite| %>
       <tr>
-        <td><%= image_tag picture.user.image.url %></td>
-        <td><%= picture.content %></td>
-        <td><%= picture.user.name %></td>
+        <td><%= image_tag favorite.picture.image.url %></td>
+        <td><%= favorite.picture.content %></td>
+        <td><%= favorite.picture.user.name %></td>
       </tr>
     <% end %>
   </tbody>
