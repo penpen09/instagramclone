@@ -1,0 +1,22 @@
+module PicturesHelper
+  def choose_new_or_edit
+    if action_name == 'new' || action_name == 'create'
+      confirm_pictures_path
+    elsif action_name == 'edit'
+      picture_path
+    end
+  end
+
+  def confirm_new_or_edit
+    unless @picture.id?
+      pictures_path
+    else
+      pictures_path
+    end
+  end
+
+  def confirm_form_method
+    @picture.id ? 'patch' : 'post'
+  end
+
+end
