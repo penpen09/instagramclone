@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :check_user, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -17,9 +18,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # unless current_user.id == @user.user_id
-    #   redirect_to pictures_path, notice: '他人のプロフィールは編集できません'
-    # end
   end
 
   def update
@@ -37,20 +35,16 @@ class UsersController < ApplicationController
   def show
   end
 
-  def destroy
-    unless current_user.id == @user.user_id
-      redirect_to pictures_path, notice: '他人のユーザー情報は削除できません'
-    else
-      @user.destroy
-      redirect_to new_user_path, notice: 'ユーザー情報を削除しました'
-    end
-  end
-
   private
   def set_user
     @user = User.find(params[:id])
   end
   def user_params
     params.require(:user).permit(:id, :name, :email, :password, :password_confirmation, :profile, :image, :image_cache, :user_name)
+  end
+  def check_user
+    if current_user.id != @user.id
+      redirect_to user_path, notice: '権限がありません'
+    end
   end
 end

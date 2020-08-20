@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   def authenticate_user
     if @current_user == nil
-      flash[:notice] = t('notice.login_needed')
+      flash[:notice] = t('ログインが必要です')
       redirect_to new_session_path
     end
   end

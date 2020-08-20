@@ -1,3 +1,4 @@
+<%= render 'header' %>
 <h3>以下の内容で、投稿する。</h3>
 <%= form_with(model: @picture, url: confirm_new_or_edit, method: confirm_form_method, local: true) do |form| %>
   <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>

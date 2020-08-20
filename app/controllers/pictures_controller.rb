@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :check_picture, only: [:edit, :update, :destroy]
 
   def index
     @pictures = Picture.all
@@ -14,14 +15,11 @@ class PicturesController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @picture.user_id
-    redirect_to pictures_path, notice: '他人のページは見れません'
-  end
   end
 
   def confirm
     @picture = current_user.pictures.build(picture_params)
-    render :new if @blog.invalid?
+    render :new if @picture.invalid?
   end
 
   def create
@@ -32,7 +30,7 @@ class PicturesController < ApplicationController
       respond_to do |format|
         if @picture.save
           PictureMailer.contact_mail(@picture).deliver
-          format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+          format.html { redirect_to @picture, notice: '新規投稿しました！' }
           # format.json { render :show, status: :created, location: @picture }
         else
           format.html { render :new }
@@ -47,7 +45,7 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+        format.html { redirect_to @picture, notice: '投稿しました！' }
         # format.json { render :show, status: :ok, location: @picture }
       else
         format.html { render :edit }
@@ -57,14 +55,10 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-    unless current_user.id == @picture.user_id
-      redirect_to pictures_path, notice: '他人のページは削除できません'
-    else
-      @picture.destroy
-      respond_to do |format|
-        format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-        # format.json { head :no_content }
-      end
+    @picture.destroy
+    respond_to do |format|
+      format.html { redirect_to pictures_url, notice: '削除しました！' }
+      # format.json { head :no_content }
     end
   end
 
@@ -74,5 +68,10 @@ class PicturesController < ApplicationController
   end
   def picture_params
     params.require(:picture).permit(:image, :image_cache, :id, :content)
+  end
+  def check_picture
+    if current_user.id != @picture.user.id
+      redirect_to pictures_path, notice: '権限がありません'
+    end
   end
 end

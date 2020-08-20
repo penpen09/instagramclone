@@ -9,12 +9,26 @@
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <% if logged_in? %>
-          <p class="navbar-text"><%= link_to(root_path) do %><span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
-          <p class="navbar-text"><%= link_to(pictures_path) do %><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
-          <p class="navbar-text"><%= link_to(new_picture_path) do %><span class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
+          <p class="navbar-text">
+            <%= link_to pictures_path do %>
+              <%= image_tag "home.png", size: '25x25'%>
+              ホーム
+            <% end %>
+          </p>
+          <p class="navbar-text">
+            <%= link_to new_picture_path do %>
+              <%= image_tag "picture.png", size: '25x25'%>
+              投稿
+            <% end %>
+          </p>
           <p class="navbar-text navbar-right"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></p>
-          <p class="navbar-text navbar-right"><%= link_to(user_path(current_user.id)) do %><span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
-          <p class="navbar-text navbar-right"><%= link_to "ユーザー一覧", users_path%></p>
+          <p class="navbar-text navbar-right">
+            <%= link_to users_path do %>
+              <%= image_tag "users.png", size: '25x25'%>
+              ユーザー一覧
+            <% end %>
+          </p>
+          <p class="navbar-text navbar-right"><%= link_to "プロフィール", user_path(current_user.id) %></p>
         <% else %>
         <p class="navbar-text navbar-right"><%= link_to "新規登録", new_user_path %></p>
         <p class="navbar-text navbar-right"><%= link_to "ログイン", new_session_path %></p>

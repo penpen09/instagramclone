@@ -5,7 +5,7 @@ class IconUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   storage :file
-  process resize_to_fit: [300,300]
+
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -25,6 +25,11 @@ class IconUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
+  process resize_to_fill: [100, 100, "Center"]
+
+  version :thumb do
+    process resize_to_fit: [30, 30]
+  end
   # def scale(width, height)
   #   # do something
   # end

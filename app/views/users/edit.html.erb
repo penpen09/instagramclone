@@ -1,3 +1,4 @@
+<%= render 'header' %>
 <h1>Editing User</h1>
 
 <%= form_with(model: @user, local: true) do |form| %>
@@ -28,6 +29,14 @@
   <div class="field">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name %>
+  </div>
+  <div class="field">
+    <%= form.label :profile %>
+    <%= form.text_field :profile %>
   </div>
 
   <div class="field">

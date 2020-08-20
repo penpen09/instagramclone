@@ -1,11 +1,14 @@
+<%= render 'header' %>
 <div>
-  <h1 class="text-center"><%= @user.name %>のページ</h1>
+  <h1 class="text-center"><%= image_tag(@user.image.url, :size =>'100x100') if @user.image && @user.image.url %><%= @user.name %>のページ</h1>
   <p class="text-center">メールアドレス: <%= @user.email %></p>
-
-  <%= image_tag(@user.image.url, :size =>'100x100') if @user.image && @user.image.url %>
+  <p class="text-center">ニックネーム: <%= @user.user_name %></p>
+  <p class="text-center">プロフィール: <%= @user.profile %></p>
 
   <br></br>
-
-  <%= link_to 'お気に入り一覧', favorites_path %>
-  <%= link_to "編集する", edit_user_path(@user.id) %>
+  <% if current_user.id == @user.id %>
+    <%= link_to 'お気に入り一覧', favorites_path(current_user.id) %>
+    <%= link_to "編集する", edit_user_path(@user.id) %>
+  <% else %>
+  <% end %>
 </div>

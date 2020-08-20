@@ -1,13 +1,19 @@
-<h1>お気に入り</h1>
+<%= render 'header' %>
+<h1 class="text-center">お気に入り</h1>
 
-<table>
-  <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= image_tag favorite.picture.image.url %></td>
-        <td><%= favorite.picture.content %></td>
-        <td><%= favorite.picture.user.name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-md-offset-3">
+
+      <% @favorites.each do |favorite| %>
+        <div class="thumbnail">
+          <p class="text-center"><%= favorite.picture.user.name %></p>
+          <p class="text-center"><%= image_tag favorite.picture.image.url, size: '200x200' %></p>
+          <div class="caption">
+            <P class="text-center"><%= favorite.picture.content %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

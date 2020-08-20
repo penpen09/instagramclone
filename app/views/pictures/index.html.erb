@@ -1,15 +1,16 @@
+<%= render 'header' %>
 <p id="notice"></p>
 
-<h1>Pictures</h1>
+<h1 class="text-center">Pictures</h1>
 
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6 col-md-offset-3">
           <% @pictures.each do |picture| %>
           <div class="thumbnail">
-            <p><%= image_tag picture.image.url%></p>
+            <p class="text-center"><%= image_tag picture.image.url%></p>
             <div class="caption">
-              <p><%= picture.content%><%= picture.user.name %></p>
+              <p class="text-center"><%= picture.content%><%= picture.user.name %></p>
               <p>
                 <%= link_to 'Show', picture, class: 'btn btn-primary' %>
                 <% if current_user.id == picture.user_id %>
