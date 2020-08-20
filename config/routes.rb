@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  root 'users#new'
   resources :contacts
-  get 'sessions/new'
   resources :pictures do
     post :confirm, on: :collection
     patch :confirm, on: :member
