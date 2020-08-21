@@ -1,11 +1,21 @@
 <%= render 'header' %>
-<div>
-  <h1 class="text-center"><%= image_tag(@user.image.url, :size =>'100x100') if @user.image && @user.image.url %><%= @user.name %>のページ</h1>
-  <p class="text-center">メールアドレス: <%= @user.email %></p>
-  <p class="text-center">ニックネーム: <%= @user.user_name %></p>
-  <p class="text-center">プロフィール: <%= @user.profile %></p>
 
-  <br></br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-md-offset-3">
+      <div class="thumbnail">
+        <h1 class="text-center"><%= image_tag(@user.image.url, :size =>'100x100') if @user.image && @user.image.url %><%= @user.name %>のページ</h1>
+        <div class="caption">
+          <p class="text-center">メールアドレス: <%= @user.email %></p>
+          <p class="text-center">ニックネーム: <%= @user.user_name %></p>
+          <p class="text-center">プロフィール: <%= @user.profile %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br></br>
+<div class="text-center">
   <% if current_user.id == @user.id %>
     <%= link_to 'お気に入り一覧', favorites_path(current_user.id) %>
     <%= link_to "編集する", edit_user_path(@user.id) %>
