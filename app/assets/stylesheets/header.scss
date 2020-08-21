@@ -1,0 +1,38 @@
+html,body{
+  height: 100%;
+  padding-top: 60px;
+}
+#wrap{
+  width: 100%;
+  position: relative;
+  min-height: 100%;
+}
+#contents{
+  padding-bottom: 140px;
+}
+.navbar-default .navbar-brand {
+    padding: 10px 10px;
+}
+.header_band{
+  color:#8997a2;
+  font-size: 30px;
+}
+.navbar-right{
+  margin-right: 15px;
+}
+.actions{
+  margin-bottom: 10px;
+}
+
+p.text-center{
+  margin-top: 20px;
+}
+p{
+  text-align: center;
+}
+.navbar-text{
+  margin: 10px;
+}
+.btn{
+  margin-bottom: 15px;
+}

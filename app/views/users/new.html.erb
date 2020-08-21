@@ -1,0 +1,27 @@
+<div class="form-signin">
+  <h1 class="form-signin-heading">新規登録</h1>
+  <%= form_with(model: @user, local: true) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.label :name ,class:'sr-only'%>
+    <%= f.text_field :name ,class:'form-control',id:'inputName',placeholder:'name'%>
+    <%= f.label :email ,class:'sr-only'%>
+    <%= f.email_field :email ,class:'form-control',id:'inputEmail',placeholder:'Email address'%>
+    <%= f.label :password ,class:'sr-only'%>
+    <%= f.password_field :password,class:'form-control',id:'inputPassword',placeholder:'Password' %>
+    <%= f.label :password_confirmation ,class:'sr-only'%>
+    <%= f.password_field :password_confirmation ,class:'form-control',id:'inputPasswordConfirmation',placeholder:'Password_confirmation'%>
+    <%= f.submit "Create my account" ,class: 'btn btn-primary btn-block'%>
+  <% end %>
+</div>
+<div class="form_login">
+  <h2>アカウントをお持ちですか？<%= link_to "ログイン", new_session_path %></h2>
+</div>

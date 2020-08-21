@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+         <a class="navbar-brand" ><%= link_to "Instagram", pictures_path ,class:"header_band" %></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <% if logged_in? %>
+          <p class="navbar-text">
+            <%= link_to pictures_path do %>
+              <%= image_tag "home.png", size: '25x25'%>
+              ホーム
+            <% end %>
+          </p>
+          <p class="navbar-text">
+            <%= link_to new_picture_path do %>
+              <%= image_tag "picture.png", size: '25x25'%>
+              投稿
+            <% end %>
+          </p>
+          <p class="navbar-text navbar-right"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></p>
+          <p class="navbar-text navbar-right">
+            <%= link_to users_path do %>
+              <%= image_tag "users.png", size: '25x25'%>
+              ユーザー一覧
+            <% end %>
+          </p>
+          <p class="navbar-text navbar-right"><%= link_to "プロフィール", user_path(current_user.id) %></p>
+        <% else %>
+        <p class="navbar-text navbar-right"><%= link_to "新規登録", new_user_path %></p>
+        <p class="navbar-text navbar-right"><%= link_to "ログイン", new_session_path %></p>
+        <% end %>
+      </div>
+    </div>
+</nav>

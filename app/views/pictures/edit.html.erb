@@ -1,6 +1,9 @@
-<h1>Editing Picture</h1>
+<%= render 'header' %>
+<h1 class="text-center">画像編集</h1>
 
 <%= render 'form', picture: @picture %>
 
-<%= link_to 'Show', @picture %> |
-<%= link_to 'Back', pictures_path %>
+<div class="text-center">
+  <%= link_to 'Show', @picture %> |
+  <%= link_to 'Back', pictures_path %>
+</div>
